@@ -1,3 +1,4 @@
+from time import sleep
 from typing import Dict
 
 from epics import PV
@@ -22,5 +23,6 @@ for cryomodule in ACCEPTANCECRYOMODULES.values():
     for cavity in cryomodule.cavities.values():
         print("Setting {pv} to {value}".format(pv=cavity.measured_quality_factorPV.pvname, value=NEW_QUALITY_FACTOR))
         cavity.update_quality_factor()
+        sleep(0.2)
         print("New value for {pv} is {value}".format(pv=cavity.measured_quality_factorPV.pvname,
                                                      value=cavity.measured_quality_factorPV.value))
